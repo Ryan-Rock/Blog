@@ -1,0 +1,53 @@
+{% extends 'layout.html' %}
+ {% block content %}
+
+           <section style="width:1000px">
+               <h1>{{content.title}}</h1>
+               <p>
+                    作者:<span>{{content.user.username}}</span>
+                    时间:<span>{{content.addTime | date('Y年m月d日 h:i:s',-8*60) }}</span>
+                    阅读:<span>{{content.views}}</span>
+                    评论:<span>{{content.comments.length}}</span>
+               </p>
+               <dfn><p>{{content.content}}</p></dfn>
+           </section>
+          <section>
+              <h3><span>评论</span> <span>一共有<i id="plcount" ></i>条评论</span></h3>
+              {% if userInfo._id %}
+              <a>sssss</a>
+              <br>
+              <div class="input-group">
+                  <input hidden value="{{content.id}}" id="hiddenid" >
+                    <input type="text" class="form-control pingluncontent" placeholder="请输入评论">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default tijiaopinglun" type="button">提交</button>
+                    </span>
+              </div>
+              {% else %}
+              <button>您还没有登陆，请先登陆</button>
+              {% endif %}
+              <p class="tiptip">还没有留言</p>
+              <ul  id="meesagelist">
+                  <!-- <li style="border:1px solid green;margin-top:3px">
+                      <p><span>admin</span><span>2016年07月29日 15：36：11</span></p>
+                      <p>哈哈哈，写的不错</p>
+                  </li> -->
+              </ul>
+          </section>
+          <!-- 分页表 -->
+          <section>
+                <nav >
+                        <ul class="pager">
+                        
+                            <li class="previous"><a href=""><span aria-hidden="true">&larr;</span> 上一页</a></li>
+                        
+                          <li>
+                          </li>
+                       
+                          <li class="next"><a href="">下一页<span aria-hidden="true">&rarr;</span></a></li>
+                        </ul>
+                     </nav>
+           </section>
+        <script src="/public/js/comment.js" ></script>
+        <script src="/public/jquery.js" ></script>
+ {% endblock %}

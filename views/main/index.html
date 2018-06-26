@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+ {% block content %}
+ {% for content in contents %}
+           <section style="width:1000px">
+               <h1>{{content.title}}</h1>
+               <p>
+                   作者:<span>{{content.user.username}}</span>
+                   时间:<span>{{content.addTime | date('Y年m月d日 h:i:s',-8*60) }}</span>
+                   阅读:<span>{{content.views}}</span>
+                   评论:<span>{{content.comments.length}}</span>
+               </p>
+               <dfn><p>{{content.description}}</p></dfn>
+               <div>
+                   <a href="/view?contentid={{content.id}}">阅读全文</a>
+               </div>
+           </section>
+           {% endfor %}
+           <section>
+                <nav aria-label="...">
+                        <ul class="pager">
+                            {% if page <= 1 %}
+                            <li class="previous"><a href="/?category={{category}}&page={{page-1}}"><span aria-hidden="true">&larr;</span> 没有上一页</a></li>
+                            {% else %}
+                            <li class="previous"><a href="/?category={{category}}&page={{page-1}}"><span aria-hidden="true">&larr;</span> 上一页</a></li>
+                            {% endif %}
+                            {% if pages >0 %}
+                          <li>
+                             {{page}}/{{pages}}
+                          </li>
+                          {% endif %}
+                          {% if page >= pages %}
+                          <li class="next"><a href="/?category={{category}}&page={{page+1}}">没有下一页<span aria-hidden="true">&rarr;</span></a></li>
+                          {% else %}
+                          <li class="next"><a href="/?category={{category}}&page={{page+1}}">下一页<span aria-hidden="true">&rarr;</span></a></li>
+                          {% endif %}
+                        </ul>
+                     </nav>
+           </section>
+ {% endblock %}
