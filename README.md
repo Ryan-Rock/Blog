@@ -1,0 +1,1 @@
+一个基于node开发的博客系统，数据库mongodb,技术主要是mongoose,express以及node，安装mongodb之后安装依赖就可以运行
